@@ -1,16 +1,13 @@
 ---
-core:
+R1:
   hostname: 192.168.121.101
-  groups: [core, cisco]
-dist1:
+  groups: [iol]
+R2:
   hostname: 192.168.121.102
-  groups: [dist, arista]
-dist2:
+  groups: [iosv]
+R3:
   hostname: 192.168.121.103
-  groups: [dist, arista]
-acc1:
+  groups: [iol]
+R4:
   hostname: 192.168.121.104
-  groups: [access, cisco]
-acc2:
-  hostname: 192.168.121.105
-  groups: [access, cisco]
+  groups: [iosv]

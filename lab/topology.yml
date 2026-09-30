@@ -1,52 +1,27 @@
 ---
 name: campus
-provider: clab
+provider: libvirt
 
-defaults.devices:
-  iol.clab.image: asifsyd/cisco_iol:17.12.01
-  eos.clab.image: asifsyd/ceos:4.32.0F
-  ioll2.clab.image: asifsyd/cisco_iol:l2-17.12.01
-
-gateway.protocol: vrrp
-stp.protocol: pvrst
-
-groups:
-  core:
-    members: [core1]
-    device: iol
-    module: [ospf]
-  dist:
-    members: [dist1, dist2]
-    device: eos
-    module: [vlan, ospf, gateway, stp]
-  access:
-    members: [acc1, acc2]
-    device: ioll2
-    module: [vlan, stp]
-    config: [templates/access]
-
-vlans:
-  users_blue: { id: 10, prefix: 172.16.10.0/24 }
-  users_green: { id: 20, prefix: 172.16.20.0/24 }
+defaults:
+  devices:
+    iosv.libvirt.image: cisco/iosv:15.9.M3
+    iosv.warnings.paramiko: false
+    iol.clab.image: asifsyd/cisco_iol:17.12.01
 
 nodes:
-  core1:
-  dist1:
-    vlans:
-      users_blue: { stp.priority: 4096, gateway.vrrp.priority: 200 }
-      users_green: { stp.priority: 8192, gateway.vrrp.priority: 100 }
-  dist2:
-    vlans:
-      users_blue: { stp.priority: 8192, gateway.vrrp.priority: 100 }
-      users_green: { stp.priority: 4096, gateway.vrrp.priority: 200 }
-  acc1:
-  acc2:
+  R1:
+    device: iol
+    provider: clab
+  R2:
+    device: iosv
+  R3:
+    device: iol
+    provider: clab
+  R4:
+    device: iosv
 
 links:
-  - core1-dist1 # OSPF area 0, auto /30 from p2p pool
-  - core1-dist2
-  - { dist1, dist2, vlan.trunk: [users_blue, users_green], prefix: False }
-  - { dist1, acc1, vlan.trunk: [users_blue, users_green], prefix: False }
-  - { dist1, acc2, vlan.trunk: [users_blue, users_green], prefix: False }
-  - { dist2, acc1, vlan.trunk: [users_blue, users_green], prefix: False }
-  - { dist2, acc2, vlan.trunk: [users_blue, users_green], prefix: False }
+  - R1-R3
+  - R2-R4
+  - R1-R4
+  - R2-R3

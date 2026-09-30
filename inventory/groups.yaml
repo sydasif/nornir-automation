@@ -1,8 +1,7 @@
 ---
-core: {}
-dist: {}
-access: {}
-cisco:
-  platform: ios
-arista:
-  platform: eos
+iol:
+  username: admin
+  password: admin
+iosv:
+  username: vagrant
+  password: vagrant
