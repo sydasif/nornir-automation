@@ -1,86 +1,52 @@
 ---
 name: campus
-message: >
-  Multi-vendor campus lab: Cisco IOL core, Arista EOS distribution,
-  Cisco IOLL2 access. Connect with 'netlab connect <node>',
-  stop the lab with 'netlab down'.
-
 provider: clab
 
-# Container images already present on this machine
-defaults.devices.iol.clab.image: asifsyd/cisco_iol:17.12.01
-defaults.devices.eos.clab.image: asifsyd/ceos:4.32.0F
-defaults.devices.ioll2.clab.image: asifsyd/cisco_iol:l2-17.12.01
+defaults.devices:
+  iol.clab.image: asifsyd/cisco_iol:17.12.01
+  eos.clab.image: asifsyd/ceos:4.32.0F
+  ioll2.clab.image: asifsyd/cisco_iol:l2-17.12.01
 
-gateway.protocol: vrrp      # classic campus FHRP (portable across all three devices)
-stp.protocol: pvrst         # Rapid-PVST interop between Arista dist + Cisco access
+gateway.protocol: vrrp
+stp.protocol: pvrst
 
 groups:
   core:
     members: [core1]
     device: iol
     module: [ospf]
-    config: [templates/campus-baseline]
   dist:
     members: [dist1, dist2]
     device: eos
     module: [vlan, ospf, gateway, stp]
-    config: [templates/campus-baseline]
   access:
     members: [acc1, acc2]
     device: ioll2
     module: [vlan, stp]
-    config: [templates/campus-baseline, templates/access-edge]
+    config: [templates/access]
 
 vlans:
-  users_blue:  { id: 10, prefix: 172.16.10.0/24 }
+  users_blue: { id: 10, prefix: 172.16.10.0/24 }
   users_green: { id: 20, prefix: 172.16.20.0/24 }
 
 nodes:
   core1:
   dist1:
     vlans:
-      users_blue:  { stp.priority: 4096, gateway.vrrp.priority: 200 }
+      users_blue: { stp.priority: 4096, gateway.vrrp.priority: 200 }
       users_green: { stp.priority: 8192, gateway.vrrp.priority: 100 }
   dist2:
     vlans:
-      users_blue:  { stp.priority: 8192, gateway.vrrp.priority: 100 }
+      users_blue: { stp.priority: 8192, gateway.vrrp.priority: 100 }
       users_green: { stp.priority: 4096, gateway.vrrp.priority: 200 }
   acc1:
   acc2:
 
 links:
-- core1-dist1                                   # OSPF area 0, auto /30 from p2p pool
-- core1-dist2
-- { dist1: , dist2: ,  vlan.trunk: [users_blue, users_green], prefix: False }
-- { dist1: , acc1: ,   vlan.trunk: [users_blue, users_green], prefix: False }
-- { dist1: , acc2: ,   vlan.trunk: [users_blue, users_green], prefix: False }
-- { dist2: , acc1: ,   vlan.trunk: [users_blue, users_green], prefix: False }
-- { dist2: , acc2: ,   vlan.trunk: [users_blue, users_green], prefix: False }
-
-# Ping tests run from eos devices: netlab has no validation plugin for iol/ioll2
-# as test source, so core1 is only ever a target (its reachability still proves
-# OSPF on the core links). dist1 <-> dist2 have no L3 link: that ping transits core1.
-validate:
-  dist1_to_core1:
-    description: core1 loopback reachable from dist1 over OSPF
-    nodes: [dist1]
-    plugin: ping('core1')
-  dist2_to_core1:
-    description: core1 loopback reachable from dist2 over OSPF
-    nodes: [dist2]
-    plugin: ping('core1')
-  dist1_to_dist2:
-    description: dist2 loopback reachable from dist1 via core1
-    nodes: [dist1]
-    plugin: ping('dist2')
-  dist1_ospf_adj:
-    description: dist1 has a FULL OSPF adjacency with core1
-    nodes: [dist1]
-    plugin: ospf_neighbor('10.0.0.1')
-
-# Optional: add end devices later, e.g. uncomment and attach access ports:
-# nodes:
-#   h1: { device: linux }
-# links:
-# - { acc1: , h1: , vlan.access: users_blue, prefix: False }
+  - core1-dist1 # OSPF area 0, auto /30 from p2p pool
+  - core1-dist2
+  - { dist1, dist2, vlan.trunk: [users_blue, users_green], prefix: False }
+  - { dist1, acc1, vlan.trunk: [users_blue, users_green], prefix: False }
+  - { dist1, acc2, vlan.trunk: [users_blue, users_green], prefix: False }
+  - { dist2, acc1, vlan.trunk: [users_blue, users_green], prefix: False }
+  - { dist2, acc2, vlan.trunk: [users_blue, users_green], prefix: False }

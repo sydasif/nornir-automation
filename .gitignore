@@ -1,1 +1,11 @@
 .venv/
+.vscode/
+
+# netlab
+lab/clab*
+lab/netlab*
+lab/group_vars
+lab/host_vars
+lab/node_files
+lab/hosts.yml
+lab/ansible.cfg
