@@ -1,7 +1,8 @@
 ---
-# Group markers matching the netlab campus lab tiers.
-# Connection credentials are declared once in inventory/defaults.yaml.
-lab: {}
 core: {}
 dist: {}
 access: {}
+cisco:
+  platform: ios
+arista:
+  platform: eos

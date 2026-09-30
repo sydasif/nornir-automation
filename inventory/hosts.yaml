@@ -1,21 +1,16 @@
 ---
-core1:
+core:
   hostname: 192.168.121.101
-  platform: cisco_iosxe
-  groups: [lab, core]
+  groups: [core, cisco]
 dist1:
   hostname: 192.168.121.102
-  platform: arista_eos
-  groups: [lab, dist]
+  groups: [dist, arista]
 dist2:
   hostname: 192.168.121.103
-  platform: arista_eos
-  groups: [lab, dist]
+  groups: [dist, arista]
 acc1:
   hostname: 192.168.121.104
-  platform: cisco_iosxe
-  groups: [lab, access]
+  groups: [access, cisco]
 acc2:
   hostname: 192.168.121.105
-  platform: cisco_iosxe
-  groups: [lab, access]
+  groups: [access, cisco]
