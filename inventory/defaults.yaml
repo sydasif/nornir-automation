@@ -1,0 +1,12 @@
+---
+# netlab lab credentials (from lab/group_vars/*/topology.json: ansible_user/ansible_ssh_pass)
+username: admin
+password: admin
+
+# scrapli connection settings (nornir_scrapli)
+connection_options:
+  scrapli:
+    extras:
+      auth_strict_key: false    # lab devices: skip host-key validation
+      ssh_config_file: false    # connect by mgmt IP, ignore system ssh config
+      auth_secondary: admin     # enable password, used only if login lands in user exec
