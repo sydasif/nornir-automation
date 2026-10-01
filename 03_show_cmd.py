@@ -4,5 +4,10 @@ from nornir_utils.plugins.functions import print_result
 
 nr = InitNornir(config_file='config.yaml')
 
-result = nr.run(task=send_command, command='show ip int brief')
+
+def send_show_cmd(task):
+    task.run(task=send_command, command="show run | include ntp")
+
+
+result = nr.run(task=send_show_cmd)
 print_result(result)
