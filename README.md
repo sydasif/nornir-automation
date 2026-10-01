@@ -6,6 +6,10 @@ A practical laboratory environment demonstrating network automation workflows us
 
 This repository provides a modular, lightweight environment for configuring and managing network devices with Nornir, for structured device grouping and provides runbooks for tasks executing like operational commands and pushing device configurations.
 
+## Topology
+
+<img src="topology.png" alt="Network Topology" width="70%" />
+
 ---
 
 ## Prerequisites
