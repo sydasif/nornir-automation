@@ -1,6 +1,22 @@
 # Nornir Automation Lab
 
-As per the [Nornir](https://nornir.tech/) documentation, Nornir is an automation framework written in python to be used with python. Most automation frameworks hide the language they are written in by using some cumbersome pseudo-language which usually is almost Turing complete, but lacks tooling to debug and troubleshoot. Integrating with other systems is also usually quite hard as they usually have complex APIs if any at all. Some of the other common problems of those pseudo-languages is that are usually quite bad at dealing with data and re-usability is limited.
+A practical laboratory environment demonstrating network automation workflows using [Nornir](https://nornir.tech/), the pluggable multi-threaded network automation framework written in Python.
+
+## Overview
+
+This repository provides a modular, lightweight environment for configuring and managing network devices with Nornir, for structured device grouping and provides runbooks for tasks executing like operational commands and pushing device configurations.
+
+---
+
+## Prerequisites
+
+- Python `3.12+`
+- Virtual Environment
+- [Netlab](https://netlab.tools/) or similar network lab environment
+
+---
+
+## External References
 
 1. [GitHub Repository](https://github.com/nornir-automation/nornir)
 2. [Nornir Documentation](https://nornir.readthedocs.io/en/latest/)
