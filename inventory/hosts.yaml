@@ -1,13 +1,25 @@
 ---
 R1:
   hostname: 192.168.121.101
-  groups: [iol]
+  groups:
+    - uk_site
 R2:
   hostname: 192.168.121.102
-  groups: [iosv]
+  groups:
+    - usa_site
 R3:
   hostname: 192.168.121.103
-  groups: [iol]
+  groups:
+    - uk_site
 R4:
   hostname: 192.168.121.104
-  groups: [iosv]
+  groups:
+    - usa_site
+R5:
+  hostname: 192.168.121.105
+  groups:
+    - uk_site
+R6:
+  hostname: 192.168.121.106
+  groups:
+    - usa_site

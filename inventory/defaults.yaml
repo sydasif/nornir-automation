@@ -1,2 +1,11 @@
 ---
+# Defaults for inventory
+username: admin
+password: admin
+
 platform: ios
+
+connection_options:
+  scrapli:
+    extras:
+      auth_strict_key: false # skip in lab environment, should be true in production
