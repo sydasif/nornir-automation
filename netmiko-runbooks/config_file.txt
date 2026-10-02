@@ -1,0 +1,4 @@
+ntp server 88.88.12.12
+snmp-server community test ro
+interface ethernet 0/0
+description THIS IS A TEST description
