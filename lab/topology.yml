@@ -7,6 +7,8 @@ defaults.device: iol
 defaults.devices:
   iol.clab.image: asifsyd/cisco_iol:17.12.01
 
+module: [ospf]
+
 nodes:
   R1:
   R2:
