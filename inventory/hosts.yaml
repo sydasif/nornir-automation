@@ -17,11 +17,3 @@ R4:
   hostname: 192.168.121.104
   groups:
     - usa_site
-R5:
-  hostname: 192.168.121.105
-  groups:
-    - uk_site
-R6:
-  hostname: 192.168.121.106
-  groups:
-    - usa_site
