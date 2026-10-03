@@ -6,7 +6,13 @@ nr = InitNornir(config_file='config.yaml')
 
 
 def rollback_config(task):
-    task.run(task=send_command, command="configure replace unix:base force")
+    # on ios use 'flash:', on iol use 'unix:'
+    groups = {device.name for device in task.host.groups}
+    if "iol" in groups:
+        command = "configure replace unix:base force"
+    else:
+        command = "configure replace flash:base force"
+    task.run(task=send_command, command=command)
 
 
 result = nr.run(task=rollback_config)
