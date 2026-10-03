@@ -1,19 +1,26 @@
 ---
 name: campus
-provider: clab
+provider: libvirt
 
-defaults.device: iol
-
-defaults.devices:
-  iol.clab.image: asifsyd/cisco_iol:17.12.01
+defaults:
+  devices:
+    iosv.libvirt.image: cisco/iosv:15.9.M3
+    iosv.warnings.paramiko: false
+    iol.clab.image: asifsyd/cisco_iol:17.12.01
 
 module: [ospf]
 
 nodes:
   R1:
+    device: iol
+    provider: clab
   R2:
+    device: iosv
   R3:
+    device: iol
+    provider: clab
   R4:
+    device: iosv
 
 links:
   - R1-R3
