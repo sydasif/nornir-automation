@@ -6,7 +6,7 @@ nr = InitNornir(config_file='config.yaml')
 
 
 def send_show_cmd(task):
-    task.run(task=send_command, command="show run | include ntp")
+    task.run(task=send_command, command="show ntp config")
 
 
 result = nr.run(task=send_show_cmd)

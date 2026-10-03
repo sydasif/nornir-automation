@@ -4,7 +4,7 @@ from nornir_utils.plugins.functions import print_result
 
 nr = InitNornir(config_file='config.yaml')
 
-commands = ["show ip int brief", "show run | include version"]
+commands = ["show ip int brief | include up", "show run | include version"]
 
 
 def send_show_cmds(task):
