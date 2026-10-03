@@ -12,3 +12,7 @@ lab/ansible.cfg
 lab/.vagrant
 lab/Vagrantfile
 nornir.log
+
+# python
+__pycache__/
+.ruff_cache/
