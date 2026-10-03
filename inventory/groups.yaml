@@ -4,3 +4,11 @@ uk_site:
     ntp_server: 4.4.4.4
 
 usa_site: {}
+
+iol:
+  username: admin
+  password: admin
+
+iosv:
+  username: vagrant
+  password: vagrant

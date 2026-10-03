@@ -1,8 +1,5 @@
 ---
 # Defaults for inventory
-username: admin
-password: admin
-
 platform: ios
 
 data:
@@ -11,4 +8,11 @@ data:
 connection_options:
   scrapli:
     extras:
-      auth_strict_key: false # skip in lab environment, should be true in production
+      auth_strict_key: false # skip in lab environment
+  netmiko:
+    extras:
+      global_delay_factor: 2 # increase delay factor for lab environment
+  napalm:
+    extras:
+      optional_args:
+        transport: ssh

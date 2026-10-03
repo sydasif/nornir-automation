@@ -3,17 +3,21 @@ R1:
   hostname: 192.168.121.101
   groups:
     - uk_site
+    - iol
   data:
     ntp_server: 1.1.1.1
 R2:
   hostname: 192.168.121.102
   groups:
     - usa_site
+    - iosv
 R3:
   hostname: 192.168.121.103
   groups:
     - uk_site
+    - iol
 R4:
   hostname: 192.168.121.104
   groups:
     - usa_site
+    - iosv
