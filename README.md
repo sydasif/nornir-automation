@@ -20,6 +20,12 @@ This repository provides a modular, lightweight environment for configuring and 
 
 ---
 
+## Compatibility Notes
+
+`requirements.txt` pins `paramiko<5.0` — paramiko 5.0 dropped the SHA-1 KEX algorithms and `ssh-rsa` support that legacy Cisco IOS still requires.
+
+---
+
 ## External References
 
 1. [GitHub Repository](https://github.com/nornir-automation/nornir)
