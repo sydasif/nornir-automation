@@ -6,7 +6,10 @@ nr = InitNornir(config_file='config.yaml')
 
 
 def ntp_config(task):
-    task.run(task=send_config, config=f"ntp server {task.host['ntp_server']}")
+    task.run(
+        task=send_config,
+        config=f"ntp server {task.host['ntp_server']}",
+    )
 
 
 result = nr.run(task=ntp_config)

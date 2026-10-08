@@ -9,6 +9,4 @@ iol:
   username: admin
   password: admin
 
-iosv:
-  username: vagrant
-  password: vagrant
+iosv: {}

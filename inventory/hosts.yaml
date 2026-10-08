@@ -10,7 +10,7 @@ R2:
   hostname: 192.168.121.102
   groups:
     - usa_site
-    - iosv
+    - iol
 R3:
   hostname: 192.168.121.103
   groups:
@@ -20,4 +20,4 @@ R4:
   hostname: 192.168.121.104
   groups:
     - usa_site
-    - iosv
+    - iol
