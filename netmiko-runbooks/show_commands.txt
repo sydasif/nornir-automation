@@ -1,0 +1,3 @@
+show ip interface brief
+show version | include Version
+show clock

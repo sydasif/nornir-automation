@@ -1,0 +1,3 @@
+show version
+show run
+show ip int brief
